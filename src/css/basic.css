@@ -1,0 +1,38 @@
+:root {
+  --white-color: white;
+  --white-bg: #f7f7f7;
+
+  --gray-color: gray;
+  --gray-bg: gray;
+
+  --red-color: rgb(241, 44, 44);
+  --red-bg: rgba(240, 21, 21, 0.979);
+
+  --transparent-bg: transparent;
+
+  --primary-color: #1c71fa;
+  --primary-bg: #3b82f6;
+}
+
+.btn {
+  width: 100%;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 0.3rem;
+}
+
+.btn-secondary {
+  color: var(--white-color);
+  background-color: var(--gray-bg);
+}
+
+.btn-primary {
+  color: var(--white-color);
+  background-color: var(--primary-bg);
+}
+
+.btn-outline {
+  border: 1px solid var(--gray-bg);
+  color: var(--gray-color);
+}
