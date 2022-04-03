@@ -1,0 +1,92 @@
+.overlay-msg {
+  color: var(--white-color);
+  background: var(--gray-color);
+  width: 100%;
+  text-align: center;
+  opacity: 1;
+  padding: 0;
+}
+
+.image-card {
+  width: 20rem;
+  border-radius: 0;
+  height: 7rem;
+}
+
+.image-card-container {
+  max-width: 20rem;
+  max-height: 10rem;
+  border-radius: 0;
+  display: inline-block;
+}
+
+.overlay-card-box {
+  opacity: 1;
+  border-radius: 0;
+}
+
+/* ---------------------------------------------------------------------------- */
+
+.horizontal-product-card {
+  max-width: 26rem;
+}
+
+.horizontal-product-card-img {
+  max-width: 16rem;
+  max-height: 14rem;
+}
+
+.card-content-container {
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.horizontal-product-card .card-img {
+  padding: 0.5rem;
+}
+
+.card-horizontal-md {
+  max-width: 20rem;
+  height: 15rem;
+  height: 100%;
+}
+
+/* ============================================================= */
+
+.card-wishlist-btn {
+  background-color: var(--gray-bg);
+  color: var(--white-color);
+}
+
+.card-wishlist-btn:focus > i {
+  color: var(--red-bg);
+}
+
+.vertical-product-card {
+  max-width: 14rem;
+  display: inline-block;
+  box-shadow: 1px 1px 1px 1px var(--gray-bg);
+}
+
+.vertical-product-card-img {
+  max-width: 14rem;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* cart total price card style */
+
+.cart-price-details {
+  width: 25rem;
+  display: inline-block;
+  padding: 1rem;
+  background-color: var(--light-bg);
+}
+
+.current-qty-no {
+  display: inline-block;
+  padding: 0.2rem 1rem;
+  border: 1px solid var(--primary-bg);
+}
