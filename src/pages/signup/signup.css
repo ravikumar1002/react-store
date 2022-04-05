@@ -1,0 +1,10 @@
+.signup-wrapper {
+  width: 25rem;
+  padding: 2rem;
+  gap: 1rem;
+  background-color: var(--white-color);
+}
+
+.signup-position {
+  height: 35rem;
+}
