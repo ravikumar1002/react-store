@@ -27,3 +27,53 @@
 .filter-section h3 {
   margin-bottom: 0.5rem;
 }
+
+.responsive-filter-wrapper{
+  display: none;
+}
+
+.filter-icon{
+  display: none;
+}
+
+@media screen and (max-width: 650px) {
+   .responsive-filter-wrapper{
+     display: block;
+   }
+
+   .filter-wrapper{
+     width: 100%;
+     height: auto;
+     position: fixed;
+     top: auto;
+     padding: 0 1rem;
+   }
+
+   .filter-section{
+    margin-bottom: 0;
+  }
+
+  .filter-type{
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding: 1rem;
+    overflow-y: scroll;
+    height: 25rem;
+  }
+
+  .hide-filter{
+    display: none;
+  }
+
+  .filter-section-text{
+    display: none;
+  }
+
+  .filter-icon{
+    display: block;
+    padding: 1rem 0.5rem;
+    font-size: 1.5rem;
+  }
+}

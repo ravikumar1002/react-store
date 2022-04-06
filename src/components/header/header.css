@@ -3,6 +3,14 @@
   top: 0;
   left: 0;
   z-index: 4;
+  display: flex;
+  width: 100%;
+  gap: 1rem 0;
+}
+
+.search-input-wrapper {
+  flex-grow: 2;
+  margin-left: 1rem;
 }
 
 .nav-bg-primary {
@@ -30,5 +38,16 @@
 }
 
 .nav-input-width {
-  width: 40rem;
+  width: 85%;
+  margin: 0 4rem;
+}
+
+
+@media screen and (max-width: 730px) {
+  .search-bar {
+    order: 2;
+  }
+  .nav-input-width {
+  margin: 0 2rem;
+  }
 }

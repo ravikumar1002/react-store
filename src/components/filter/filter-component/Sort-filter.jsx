@@ -11,6 +11,7 @@ const SortFilter = ({ filteredApplyItemState, filteredApplyItemDispatch}) => {
                             type="radio"
                             name="sort"
                             id="hightolow"
+                            checked = {filteredApplyItemState.sortBy === "PRICE_HIGH_TO_LOW"}
                             className="input-radio"
                             onChange={(e) => {
                                 const { checked } = e.target;
@@ -33,6 +34,7 @@ const SortFilter = ({ filteredApplyItemState, filteredApplyItemDispatch}) => {
                             name="sort"
                             id="lowtohigh"
                             className="input-radio"
+                            checked = {filteredApplyItemState.sortBy === "PRICE_LOW_TO_HIGH"}
                             onChange={(e) => {
                                 const { checked } = e.target;
                                 filteredApplyItemDispatch({

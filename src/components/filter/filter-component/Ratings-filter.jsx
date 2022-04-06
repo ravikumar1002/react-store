@@ -11,6 +11,7 @@ const RatingsFilter = ({ filteredApplyItemState, filteredApplyItemDispatch}) => 
                                 type="radio"
                                 id="rating-4"
                                 className="input-radio"
+                                checked ={filteredApplyItemState.ratings === 4 }
                                 name="rating"
                                 onChange={(e) => {
                                     const { checked } = e.target;
@@ -32,6 +33,7 @@ const RatingsFilter = ({ filteredApplyItemState, filteredApplyItemDispatch}) => 
                                 type="radio"
                                 id="rating-3"
                                 className="input-radio"
+                                checked ={filteredApplyItemState.ratings === 3}
                                 name="rating"
                                 onChange={(e) => {
                                     const { checked } = e.target;
@@ -53,6 +55,7 @@ const RatingsFilter = ({ filteredApplyItemState, filteredApplyItemDispatch}) => 
                                 type="radio"
                                 id="rating-2"
                                 className="input-radio"
+                                checked ={filteredApplyItemState.ratings === 2 }
                                 name="rating"
                                 onChange={(e) => {
                                     const { checked } = e.target;
@@ -74,6 +77,7 @@ const RatingsFilter = ({ filteredApplyItemState, filteredApplyItemDispatch}) => 
                                 type="radio"
                                 id="rating-1"
                                 className="input-radio"
+                                checked ={filteredApplyItemState.ratings === 1 }
                                 name="rating"
                                 onChange={(e) => {
                                     const { checked } = e.target;

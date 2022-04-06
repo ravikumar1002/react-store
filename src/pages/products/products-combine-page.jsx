@@ -4,7 +4,7 @@ import "./products.css";
 
 const ProductsPageCombine = () => {
     return (
-        <main className="d-flex gap-2">
+        <main className="d-flex gap-2  products-page-responsive">
             <Filter />
             <ProductsListShow />
         </main>

@@ -8,3 +8,17 @@
   flex-wrap: wrap;
   gap: 2rem;
 }
+
+@media screen and (max-width: 650px) {
+
+  .products-page-heading{
+    margin-top: 1rem;
+  }
+
+  .products-page-responsive {
+    flex-direction: column;
+  }
+  .product-items-container {
+    width: 100%;
+  }
+}

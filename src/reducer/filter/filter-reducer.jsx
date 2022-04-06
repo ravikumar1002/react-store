@@ -23,27 +23,17 @@ const filterReducer = (state, action) => {
             });
     }
 
-    function getSortItems(item, sortBy) {
+    function getSortItems(data, sortBy) {
         if (sortBy === "PRICE_HIGH_TO_LOW") {
-            return [
-                ...item.sort(
-                    (a, b) =>
-                        b.originalPrice -
-                        (b.originalPrice / 100) * b.discount -
-                        (a.originalPrice - (a.originalPrice / 100) * a.discount)
-                ),
-            ];
+            return [...data].sort(
+                (a, b) => b.originalPrice - (b.originalPrice / 100) * b.discount - (a.originalPrice - (a.originalPrice / 100) * a.discount)
+            )
         } else if (sortBy === "PRICE_LOW_TO_HIGH") {
-            return [
-                ...item.sort(
-                    (a, b) =>
-                        a.originalPrice -
-                        (a.originalPrice / 100) * a.discount -
-                        (b.originalPrice - (b.originalPrice / 100) * b.discount)
-                ),
-            ];
+            return [...data].sort(
+                (a, b) => a.originalPrice -(a.originalPrice / 100) * a.discount - (b.originalPrice - (b.originalPrice / 100) * b.discount)
+            )
         }
-        return item;
+        return data;
     }
 
     const getfilterData = (

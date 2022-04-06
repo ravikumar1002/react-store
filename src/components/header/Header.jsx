@@ -1,11 +1,9 @@
 import "./header.css"
 import { Link } from "react-router-dom"
-import { useNavigate } from "react-router-dom";
 import { userProductsDataContext } from "../../service/getUserProductsData";
 import { useContext } from "react";
 
 const Header = () => {
-    let navigate = useNavigate()
     const { userSavedProductsState } = useContext(userProductsDataContext)
 
     return (
@@ -18,7 +16,7 @@ const Header = () => {
                     </Link>
                 </h2>
             </div>
-            <div>
+            <div className="search-input-wrapper search-bar">
                 <span className="input-search nav-input-width">
                     <span className="fas fa-search input-search-icon"></span>
                     <input
@@ -28,7 +26,7 @@ const Header = () => {
                     />
                 </span>
             </div>
-            <nav className="nav-action-btns">
+            <nav >
                 <ul className="horizontal-align-centre nav-text-primary">
                     <li className="list-style-none">
                         <button>
@@ -36,14 +34,14 @@ const Header = () => {
                                 to="/signup"
                                 className="nav-btn-primary nav-text-primary "
                             >
-                                 <span className="btn btn-secondary btn-sm border-squre">
-                                signUp
-                            </span>
+                                <span className="btn btn-secondary btn-sm border-squre">
+                                    signUp
+                                </span>
                             </Link>
                         </button>
 
                     </li>
-                    <li className="list-style-none">
+                    <li className="list-style-none ">
                         <button>
                             <Link
                                 to="/wishlist"
