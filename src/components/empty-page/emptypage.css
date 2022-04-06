@@ -1,0 +1,21 @@
+
+.empty-bag{
+    width: 20rem;
+    height: 15rem;
+}
+
+.empty-page-heading{
+    font-size: 2rem;
+    margin: 0.5rem;
+    padding: 1rem;
+    color: var(--light-dark);
+}
+
+.empty-page-btn{
+    display: inline-block;
+    text-decoration: none;
+}
+
+.empty-page-sub-content{
+    margin: 0.5rem;
+}
