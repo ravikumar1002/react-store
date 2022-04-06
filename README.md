@@ -79,3 +79,9 @@ Open the `localhost` link in the browser.
 ### Live link and demo
 
 [Deployed link] (https://store-in-react.netlify.app/)
+
+live demo:
+
+
+https://user-images.githubusercontent.com/86847625/162054802-654f4f2a-3221-4f9d-88db-f8bbfc092087.mp4
+
