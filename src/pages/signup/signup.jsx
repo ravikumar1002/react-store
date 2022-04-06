@@ -21,7 +21,7 @@ const SignUpPage = () => {
 
     return (
         <main>
-            <div className="modal-container  signup-position">
+            <div className="modal-container  signup-position w-100">
                 <div className="signup-wrapper flex-col ">
                     <div>
                         <h2 className="text-center">Signup</h2>
