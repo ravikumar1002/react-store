@@ -8,6 +8,8 @@ import OverlayCard from "./overlaycard";
 import HeroSection from "./hero-section";
 import ProductShowCaseCard from "./showcase-products";
 import { getCategory } from "../../api-request/getCategory";
+import { useDocumentTitle } from "../../hooks/document-title";
+
 const Home = () => {
      const [categorySecion, setCategorySection] = useState([])
      const getAllCategory = async() => {
@@ -15,7 +17,8 @@ const Home = () => {
           setCategorySection(typeOfCategory.categories)
      }
     useEffect(()=> {
-     getAllCategory()
+        useDocumentTitle("Home")
+        getAllCategory()
     },[])
     return (
         <main>

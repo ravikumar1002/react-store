@@ -1,12 +1,17 @@
 import CartFinalPriceCard from "./total-price-card"
 import CartProductCard from "./cart-products-card"
 import "./cart.css"
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { userProductsDataContext } from "../../service/getUserProductsData";
 import CartEmptyImg from "../../assets/empty-bag.png"
 import { EmptyPage } from "../../components/empty-page/EmptyPage";
+import { useDocumentTitle } from "../../hooks/document-title";
 
 const CartPage = () => {
+    useEffect(() => {
+        useDocumentTitle("Cart")
+    }, [])
+    
 
     const { userSavedProductsState } = useContext(
         userProductsDataContext

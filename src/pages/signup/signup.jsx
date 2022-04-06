@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { signupHandler } from "../../api-request/signup-api";
 import { useSignUp } from "../../context/signup-context/signup-context";
 import { useNavigate } from "react-router-dom";
 import "./signup.css";
+import { useDocumentTitle } from "../../hooks/document-title";
 
 const SignUpPage = () => {
     let navigate = useNavigate()
@@ -12,6 +13,10 @@ const SignUpPage = () => {
         password: false,
         checkbox: false,
     });
+
+    useEffect(() => {
+        useDocumentTitle("SignUp")
+    }, [])
 
     const { signupReducerState, signUpReducerDispatch } = useSignUp();
     

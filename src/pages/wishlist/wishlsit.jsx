@@ -1,13 +1,18 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { userProductsDataContext } from "../../service/getUserProductsData";
 import WishlistProductsCard from "./wishlist-card";
 import "./wishlist.css"
 import wishlistEmptyImg from "../../assets/wishlist-empty.png"
 import { EmptyPage } from "../../components/empty-page/EmptyPage";
+import { useDocumentTitle } from "../../hooks/document-title";
+
 const WishlistPage = () => {
     const { userSavedProductsState } = useContext(
         userProductsDataContext
     );
+    useEffect(() => {
+        useDocumentTitle("Wishlist")
+    }, [])
 
     const emptyWIshlist  = {
         imgSrc : wishlistEmptyImg,
