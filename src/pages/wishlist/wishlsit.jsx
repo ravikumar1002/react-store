@@ -1,22 +1,33 @@
-import { useContext} from "react";
+import { useContext } from "react";
 import { userProductsDataContext } from "../../service/getUserProductsData";
 import WishlistProductsCard from "./wishlist-card";
+import "./wishlist.css"
+import wishlistEmptyImg from "../../assets/wishlist-empty.png"
+import { EmptyPage } from "../../components/empty-page/EmptyPage";
 const WishlistPage = () => {
     const { userSavedProductsState } = useContext(
         userProductsDataContext
     );
 
+    const emptyWIshlist  = {
+        imgSrc : wishlistEmptyImg,
+        imgAlt: "wishlist is empty",
+        emptyPageHeading: "Your wishlist is empty!!",
+        emptyPageText: "Seems like you don't have wishes here.",
+        emptyPageSubText :  "Make a Wish!",
+    }
+
     return (
         <>
             <h2 className="text-center py-2">My Wishlist</h2>
-            <div className="grid-center-columns wishlist-page">
+            <div className="wishlist-products">
                 {userSavedProductsState?.wishlist?.length > 0 ? (
                     <WishlistProductsCard
                         productsData={userSavedProductsState?.wishlist}
-                    /> 
-                ) : <div className="text-center mt-4"> 
-                    <p>Wishlist Is Empty</p>
-                    </div>}
+                    />
+                ) : <div className="text-center mt-4">
+                    <EmptyPage   emptyPageData = {emptyWIshlist} />
+                </div>}
             </div>
         </>
     );
