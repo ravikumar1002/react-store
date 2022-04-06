@@ -19,7 +19,7 @@ const Filter = () => {
                     <button onClick={() => {
                         setShowResposiveFilter(!showResposiveFilter)
                     }} className="filter-icon">
-                        <i className="fas fa-filter fa-bars-filter fs-2"></i>
+                        <i className="fas fa-filter fa-bars-filter fs-2">Filter</i>
                     </button>
                 </div>
 

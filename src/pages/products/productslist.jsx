@@ -9,7 +9,7 @@ const ProductsListShow = () => {
 
     return (
         <div className="product-items-container">
-            <div className="flex-align-centre py-2">
+            <div className="flex-align-centre py-2 products-page-heading">
                 <h2>Showing All Product</h2>
                 <p className="pl-2">{` showing ${filteredItem.length} products`}</p>
             </div>

@@ -24,6 +24,7 @@ const PriceProductCard = ({ productsData }) => {
                         <div className="card-content-container">
                             <div className="card-img-heading">
                                 <h4 className="card-heading">{item.title}</h4>
+                                <small>{`Book type: ${item.categoryName}`}</small>
                             </div>
 
                             <div className="card-content">
