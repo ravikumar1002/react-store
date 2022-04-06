@@ -23,7 +23,7 @@ const RangeFilter = ({ filteredApplyItemState, filteredApplyItemDispatch}) => {
                 </p>
                 <input
                     type="range"
-                    className="w-100"
+                    className="w-100 pointer"
                     min={0}
                     max={5000}
                     value={filteredApplyItemState.range}

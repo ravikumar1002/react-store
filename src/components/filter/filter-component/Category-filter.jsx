@@ -7,11 +7,12 @@ const CategoryFilter = ({ filteredApplyItemState, filteredApplyItemDispatch}) =>
             <div className="flex-col">
                 {categories.map((category) => {
                     return (
-                        <label htmlFor={category.categoryName.toLocaleLowerCase()} key = {category._id}>
+                        <label htmlFor={category.categoryName.toLowerCase()} key = {category._id}>
                         <input
                             type="checkbox"
-                            id={category.categoryName.toLocaleLowerCase()}
-                            name={category.categoryName.toLocaleLowerCase()}
+                            id={category.categoryName.toLowerCase()}
+                            name={category.categoryName.toLowerCase()}
+                            checked = {filteredApplyItemState.activeCategory.includes(category.categoryName.toLowerCase())}
                             className="category"
                             onChange={(e) => {
                                 const { name, checked } = e.target;
