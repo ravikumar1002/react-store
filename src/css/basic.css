@@ -9,7 +9,7 @@
   --red-bg: rgba(240, 21, 21, 0.979);
 
   --transparent-bg: transparent;
-
+  --light-dark: rgb(49, 49, 49);
   --primary-color: #1c71fa;
   --primary-bg: #3b82f6;
 }

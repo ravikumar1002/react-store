@@ -25,6 +25,10 @@
   gap: 1rem;
 }
 
+.m-2{
+  margin: 1rem;
+}
+
 .mt-1 {
   margin-top: 0.5rem;
 }
@@ -67,4 +71,13 @@
 
 .w-100 {
   width: 100%;
+}
+
+
+.gap-2{
+  gap: 1rem;
+}
+
+.pointer{
+  cursor: pointer;
 }
