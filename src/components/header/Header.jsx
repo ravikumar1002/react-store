@@ -2,9 +2,11 @@ import "./header.css"
 import { Link } from "react-router-dom"
 import { userProductsDataContext } from "../../service/getUserProductsData";
 import { useContext } from "react";
+import { productsDataContext } from "../../context/products-context/products-data";
 
 const Header = () => {
     const { userSavedProductsState } = useContext(userProductsDataContext)
+    const { filteredApplyItemState, filteredApplyItemDispatch } = useContext(productsDataContext);
 
     return (
 
@@ -23,6 +25,22 @@ const Header = () => {
                         type="search"
                         className="input-search-input"
                         placeholder="Search"
+                        onChange={(e) => {
+                            if (e.target.value.length > 0) {
+                                filteredApplyItemDispatch({
+                                    type: "SEARCH_ITEM",
+                                    payload: {
+                                        searchKeyword: e.target.value.toLowerCase()
+                                    }
+                                })
+                            } else {
+                                filteredApplyItemDispatch({
+                                    type: "CLEAR_FILTER",
+                                    payload : filteredApplyItemState.item
+                                })
+                            }
+                        }
+                        }
                     />
                 </span>
             </div>
