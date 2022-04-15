@@ -22,10 +22,8 @@ const filterReducer = (state, action) => {
                     : true;
             })
             .filter(searchItem => {
-                console.log(inputSearchValue)
-                // return searchItem
-                return searchItem.title.toLowerCase().includes(inputSearchValue) ? searchItem : false
-            }) 
+                return searchItem.title.toLowerCase().match(inputSearchValue) ? searchItem : false
+            })
     }
 
     function getSortItems(data, sortBy) {
@@ -35,7 +33,7 @@ const filterReducer = (state, action) => {
             )
         } else if (sortBy === "PRICE_LOW_TO_HIGH") {
             return [...data].sort(
-                (a, b) => a.originalPrice -(a.originalPrice / 100) * a.discount - (b.originalPrice - (b.originalPrice / 100) * b.discount)
+                (a, b) => a.originalPrice - (a.originalPrice / 100) * a.discount - (b.originalPrice - (b.originalPrice / 100) * b.discount)
             )
         }
         return data;
@@ -45,7 +43,7 @@ const filterReducer = (state, action) => {
         data,
         { sortByValue, ratingValue, rangeValue, categoryValue, inputSearchValue }
     ) => {
-        
+
         const sortedData = getSortItems(data, sortByValue);
         const filteredData = filteringData(sortedData, {
             ratingValue,
@@ -61,7 +59,7 @@ const filterReducer = (state, action) => {
             const sortedValue = getfilterData(item, {
                 sortByValue: action.payload.sortType,
                 ratingValue: ratings,
-                rangeValue: range, 
+                rangeValue: range,
                 categoryValue: activeCategory,
                 inputSearchValue: inputSearchText,
             });
@@ -75,7 +73,7 @@ const filterReducer = (state, action) => {
             const sortedRatings = getfilterData(item, {
                 sortByValue: sortBy,
                 ratingValue: action.payload.ratingsType,
-                rangeValue: range, 
+                rangeValue: range,
                 inputSearchValue: inputSearchText,
                 categoryValue: activeCategory,
             });
@@ -102,7 +100,7 @@ const filterReducer = (state, action) => {
             const sortedCategory = getfilterData(item, {
                 sortByValue: sortBy,
                 ratingValue: ratings,
-                rangeValue: range, 
+                rangeValue: range,
                 categoryValue: action.payload.category,
                 inputSearchValue: inputSearchText,
             });
@@ -112,22 +110,19 @@ const filterReducer = (state, action) => {
                 filteredItem: sortedCategory,
             };
 
-         case "SEARCH_ITEM" :
-                console.log(action.payload.searchKeyword)
-              const  searchItem  = getfilterData(item, {
+        case "SEARCH_ITEM":
+            const searchItem = getfilterData(item, {
                 sortByValue: null,
                 categoryValue: [],
                 ratingValue: null,
                 rangeValue: 5000,
                 inputSearchValue: action.payload.searchKeyword,
-                });
-          
-            console.log(searchItem)
-         return{
-            ...state,
-            inputSearchText : action.payload.searchKeyword,
-            filteredItem: searchItem,
-         }
+            });
+            return {
+                ...state,
+                inputSearchText: action.payload.searchKeyword,
+                filteredItem: searchItem,
+            }
         case "CLEAR_FILTER":
             return {
                 ...state,

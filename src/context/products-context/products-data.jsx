@@ -19,7 +19,7 @@ const ProductsDataProvider = ({ children }) => {
         activeCategory: [],
         ratings: null,
         range: 5000,
-        inputSearchText: null,
+        inputSearchText: "",
     };
 
     const [filteredApplyItemState, filteredApplyItemDispatch] = useReducer(
