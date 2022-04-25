@@ -5,7 +5,7 @@ import {
     removeFromWishlist,
     getWishlist,
 } from "../api-request/wishlist-api";
-import { useToken } from "./token-hooks";
+import { useAuth } from "../context/auth/auth-context";
 import { getCart, addToCart, removeFromCart, updateQuantityInCart } from "../api-request/cart-api";
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +16,7 @@ function useOperations() {
     );
     const wishlistAddedproducts = userSavedProductsState.wishlist;
     const cartAddedProducts = userSavedProductsState.cart
-    const localStorageToken = useToken()
+    const {token} = useAuth()
 
     const getWishlistProductsFromApi = async (authToken) => {
         const receiveWishlistProducts = await getWishlist(authToken);
@@ -39,8 +39,10 @@ function useOperations() {
     }
 
     useEffect(() => {
-        getWishlistProductsFromApi(localStorageToken);
-        getCartFromApi(localStorageToken)
+        if(token){
+        getWishlistProductsFromApi(token);
+        getCartFromApi(token)
+        }
     }, []);
 
     const wishlistButtonText = (item) => {

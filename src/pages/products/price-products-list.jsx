@@ -1,8 +1,8 @@
 import { useOperations } from "../../hooks/useOperations";
-import { useToken } from "../../hooks/token-hooks";
+import { useAuth } from "../../context/auth/auth-context";
 
 const PriceProductCard = ({ productsData }) => {
-    const { localStorageToken } = useToken()
+    const { token } = useAuth()
     const { toggleWishlist, wishlistButtonText, cartButtonText, togglecart } =
         useOperations();
 
@@ -47,7 +47,7 @@ const PriceProductCard = ({ productsData }) => {
                                     <button
                                         className="btn btn-primary"
                                         onClick={() => {
-                                            togglecart(localStorageToken, item);
+                                            togglecart(token, item);
                                         }}
                                     >
                                         {cartButtonText(item)}
@@ -56,7 +56,7 @@ const PriceProductCard = ({ productsData }) => {
                                     <button
                                         className="btn-block btn-x-sm py-1 btn btn-secondary mt-1"
                                         onClick={() => {
-                                            toggleWishlist(localStorageToken, item);
+                                            toggleWishlist(token, item);
                                         }}
                                     >
                                         {wishlistButtonText(item)}
