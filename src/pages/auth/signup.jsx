@@ -18,7 +18,6 @@ const SignUp = () => {
                 <div className="modal-container  auth-position">
                     <form action="" className="auth-wrapper" onSubmit={(e) => {
                         e.preventDefault()
-                        // console.log(location)
                         userSignUp(signupDetail, location)
                     }}>
                         <div>

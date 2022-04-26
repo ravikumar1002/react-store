@@ -9,7 +9,6 @@ const Profile = () => {
     const navigate = useNavigate()
     const { userData, removeData } = useAuth()
 
-
     const userLogout = () => {
         localStorage.clear()
         removeData()
@@ -17,9 +16,6 @@ const Profile = () => {
             type: "LOGOUT",
         })
     }
-
-
-    console.log(userData)
 
     return (
         <div>

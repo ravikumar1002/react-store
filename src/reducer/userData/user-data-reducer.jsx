@@ -53,13 +53,6 @@ const userDataReducer = (state, action) => {
             }
         }
 
-        // case "LOGIN_DATA": {
-        //     return {
-        //         cart: action.payload.loginCartData,
-        //         wishlist: action.payload.loginWishlistData
-        //     }
-        // }
-
         default:
             return state
     }

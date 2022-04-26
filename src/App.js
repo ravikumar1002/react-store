@@ -18,7 +18,6 @@ function App() {
   const { getCartFromApi, getWishlistProductsFromApi } = useOperations();
   const { token } = useAuth();
   useEffect(() => {
-    console.log(token);
     if (token) {
       getWishlistProductsFromApi(token);
       getCartFromApi(token);

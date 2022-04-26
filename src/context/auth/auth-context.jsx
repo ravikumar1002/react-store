@@ -11,12 +11,9 @@ const AuthProvider = ({ children }) => {
         userData: {}
     })
 
-    // const location = useLocation()
     const navigate = useNavigate()
 
-
     const userSignUp = async ({ email, password, name }, location) => {
-        console.log(email, password, name)
         const data = await signupHandler(email, password, name)
         localStorage.setItem(
             'userHasLogged',
@@ -60,7 +57,6 @@ const AuthProvider = ({ children }) => {
 
     const getLocalData = async () => {
         const localStrogeItem = await { ...JSON.parse(localStorage.getItem("userHasLogged")).user }
-        console.log(localStrogeItem.email)
         userSignUp({
             email: localStrogeItem.email,
             password: localStrogeItem.password,
@@ -74,7 +70,6 @@ const AuthProvider = ({ children }) => {
         }
     }, [])
 
-    console.log(user)
 
     return <authContext.Provider value={{ userSignUp, removeData, userlogin, userData: user.userData, token: user?.encodedToken }}>
         {children}
