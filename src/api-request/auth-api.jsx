@@ -1,10 +1,11 @@
 import axios from "axios";
 
-const signupHandler = async (email, password) => {
+const signupHandler = async (email, password, name) => {
     try {
         const response = await axios.post(`/api/auth/signup`, {
             email: email,
             password: password,
+            name: name
         });
         if (response.status === 200 || response.status === 201) {
             return response.data

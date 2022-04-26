@@ -16,7 +16,7 @@ function useOperations() {
     );
     const wishlistAddedproducts = userSavedProductsState.wishlist;
     const cartAddedProducts = userSavedProductsState.cart
-    const {token} = useAuth()
+    const { token } = useAuth()
 
     const getWishlistProductsFromApi = async (authToken) => {
         const receiveWishlistProducts = await getWishlist(authToken);
@@ -39,9 +39,9 @@ function useOperations() {
     }
 
     useEffect(() => {
-        if(token){
-        getWishlistProductsFromApi(token);
-        getCartFromApi(token)
+        if (token) {
+            getWishlistProductsFromApi(token);
+            getCartFromApi(token)
         }
     }, []);
 
@@ -129,7 +129,7 @@ function useOperations() {
     }
 
 
-    return { wishlistButtonText, toggleWishlist, removeWishlistItem, togglecart, cartButtonText, removeProductsFromCart, updateProductQuantityInCart };
+    return { wishlistButtonText, toggleWishlist, removeWishlistItem, togglecart, cartButtonText, removeProductsFromCart, updateProductQuantityInCart, getWishlistProductsFromApi, getCartFromApi };
 }
 
 export { useOperations };

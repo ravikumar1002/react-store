@@ -1,22 +1,23 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { signupHandler, loginHandler } from "../../api-request/auth-api";
-
+// import {userProductsDataContext} from "../../service/getUserProductsData"
 export const authContext = createContext({})
 
 const AuthProvider = ({ children }) => {
+
     const [user, setUser] = useState({
         encodedToken: '',
         userData: {}
     })
+
     // const location = useLocation()
     const navigate = useNavigate()
 
-    const localStrogeItem = JSON.parse(localStorage.getItem("userHasLogged"))
 
-    const userSignUp = async ({ email, password }, location) => {
-        console.log(email, password, location)
-        const data = await signupHandler(email, password)
+    const userSignUp = async ({ email, password, name }, location) => {
+        console.log(email, password, name)
+        const data = await signupHandler(email, password, name)
         localStorage.setItem(
             'userHasLogged',
             JSON.stringify({ token: data?.encodedToken, user: data?.createdUser })
@@ -25,33 +26,57 @@ const AuthProvider = ({ children }) => {
             encodedToken: data?.encodedToken,
             userData: data?.createdUser
         })
-        navigate(location?.state?.from?.pathname)
+        if (location?.state) {
+            navigate(location?.state?.from?.pathname)
+        } else {
+            navigate("/")
+        }
     }
 
     const userlogin = async ({ email, password }, location) => {
         const data = await loginHandler(email, password)
-        console.log(data)
         localStorage.setItem(
             'userHasLogged',
-            JSON.stringify(data)
+            JSON.stringify({ token: data?.encodedToken, user: data?.foundUser })
         );
         setUser({
             encodedToken: data?.encodedToken,
             userData: data?.foundUser
         })
-        navigate(location?.state?.from?.pathname)
+        if (location.state) {
+            navigate(location?.state?.from?.pathname)
+        } else {
+            navigate("/")
+        }
     }
 
-    // useEffect(() => {
-    //     if(localStrogeItem?.token){
-    //         (async() => {
-    //             const data = await signupHandler(localStrogeItem.user.email, localStrogeItem.user.password)
-    //             setUser(data)
-    //         })()
-    //     }
-    // },[localStrogeItem?.token === ])
 
-    return <authContext.Provider value={{ userSignUp, userlogin, user, token: user?.encodedToken }}>
+    const removeData = () => {
+        setUser({
+            encodedToken: '',
+            userData: {}
+        })
+    }
+
+    const getLocalData = async () => {
+        const localStrogeItem = await { ...JSON.parse(localStorage.getItem("userHasLogged")).user }
+        console.log(localStrogeItem.email)
+        userSignUp({
+            email: localStrogeItem.email,
+            password: localStrogeItem.password,
+            name: localStrogeItem.name
+        })
+    }
+
+    useEffect(() => {
+        if ((JSON.parse(localStorage.getItem("userHasLogged"))?.token) && (!user.encodedToken)) {
+            getLocalData()
+        }
+    }, [])
+
+    console.log(user)
+
+    return <authContext.Provider value={{ userSignUp, removeData, userlogin, userData: user.userData, token: user?.encodedToken }}>
         {children}
     </authContext.Provider>
 }

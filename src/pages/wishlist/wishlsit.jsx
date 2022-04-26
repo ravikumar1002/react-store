@@ -5,21 +5,29 @@ import "./wishlist.css"
 import wishlistEmptyImg from "../../assets/wishlist-empty.png"
 import { EmptyPage } from "../../components/empty-page/EmptyPage";
 import { useDocumentTitle } from "../../hooks/document-title";
+import { useOperations } from "../../hooks/useOperations";
+import { useAuth } from "../../context/auth/auth-context";
 
 const WishlistPage = () => {
     const { userSavedProductsState } = useContext(
         userProductsDataContext
     );
+    const { getCartFromApi, getWishlistProductsFromApi } = useOperations()
+    const { token } = useAuth()
     useEffect(() => {
         useDocumentTitle("Wishlist")
+        if (token) {
+            getWishlistProductsFromApi(token);
+            getCartFromApi(token)
+        }
     }, [])
 
-    const emptyWIshlist  = {
-        imgSrc : wishlistEmptyImg,
+    const emptyWIshlist = {
+        imgSrc: wishlistEmptyImg,
         imgAlt: "wishlist is empty",
         emptyPageHeading: "Your wishlist is empty!!",
         emptyPageText: "Seems like you don't have wishes here.",
-        emptyPageSubText :  "Make a Wish!",
+        emptyPageSubText: "Make a Wish!",
     }
 
     return (
@@ -31,7 +39,7 @@ const WishlistPage = () => {
                         productsData={userSavedProductsState?.wishlist}
                     />
                 ) : <div className="text-center mt-4">
-                    <EmptyPage   emptyPageData = {emptyWIshlist} />
+                    <EmptyPage emptyPageData={emptyWIshlist} />
                 </div>}
             </div>
         </>

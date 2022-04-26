@@ -9,7 +9,21 @@ import CartPage from "./pages/cart/cart";
 import Mockman from "mockman-js";
 import { ErrorPage } from "./pages/error-page/error-page";
 import { RequiresAuth } from "./pages/auth/components/RequiresAuth";
+import { Profile } from "./pages/profile/Profile";
+import { Login } from "./pages/auth/login";
+import { useAuth } from "./context/auth/auth-context";
+import { useOperations } from "./hooks/useOperations";
+import { useEffect } from "react";
 function App() {
+  const { getCartFromApi, getWishlistProductsFromApi } = useOperations();
+  const { token } = useAuth();
+  useEffect(() => {
+    console.log(token);
+    if (token) {
+      getWishlistProductsFromApi(token);
+      getCartFromApi(token);
+    }
+  }, []);
   return (
     <div className="App">
       <Header />
@@ -33,8 +47,17 @@ function App() {
           }
         />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/mockman" element={<Mockman />} />
         <Route path="*" element={<ErrorPage />} />
+        <Route
+          path="/profile"
+          element={
+            <RequiresAuth>
+              <Profile />
+            </RequiresAuth>
+          }
+        />
       </Routes>
     </div>
   );

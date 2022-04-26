@@ -47,7 +47,12 @@ const PriceProductCard = ({ productsData }) => {
                                     <button
                                         className="btn btn-primary"
                                         onClick={() => {
-                                            togglecart(token, item);
+                                            if (token) {
+                                                console.log(token)
+                                                togglecart(token, item);
+                                            } else {
+                                                alert("login first")
+                                            }
                                         }}
                                     >
                                         {cartButtonText(item)}

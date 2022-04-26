@@ -45,6 +45,21 @@ const userDataReducer = (state, action) => {
                 cart: action.payload.cartData
             }
 
+        case "LOGOUT": {
+            return {
+                ...state,
+                cart: [],
+                wishlist: [],
+            }
+        }
+
+        // case "LOGIN_DATA": {
+        //     return {
+        //         cart: action.payload.loginCartData,
+        //         wishlist: action.payload.loginWishlistData
+        //     }
+        // }
+
         default:
             return state
     }

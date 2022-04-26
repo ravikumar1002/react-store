@@ -9,6 +9,7 @@ const SignUp = () => {
     const [signupDetail, setSignupDetail] = useState({
         email: "",
         password: "",
+        name: "",
     })
 
     return (
@@ -22,6 +23,19 @@ const SignUp = () => {
                     }}>
                         <div>
                             <h2 className="text-center">Signup</h2>
+                        </div>
+                        <div className="flex-col">
+                            <label htmlFor="name">Name</label>
+                            <input type="text" id="name" className="fs-sm input-padding" autoComplete="off" required
+                                onChange={(e) => {
+                                    setSignupDetail((prev) => {
+                                        return {
+                                            ...prev,
+                                            name: e.target.value
+                                        }
+                                    })
+                                }}
+                            />
                         </div>
                         <div className="flex-col">
                             <label htmlFor="email">Email address</label>
