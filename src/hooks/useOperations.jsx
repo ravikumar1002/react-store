@@ -5,7 +5,7 @@ import {
     removeFromWishlist,
     getWishlist,
 } from "../api-request/wishlist-api";
-import { useToken } from "./token-hooks";
+import { useAuth } from "../context/auth/auth-context";
 import { getCart, addToCart, removeFromCart, updateQuantityInCart } from "../api-request/cart-api";
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +16,7 @@ function useOperations() {
     );
     const wishlistAddedproducts = userSavedProductsState.wishlist;
     const cartAddedProducts = userSavedProductsState.cart
-    const localStorageToken = useToken()
+    const { token } = useAuth()
 
     const getWishlistProductsFromApi = async (authToken) => {
         const receiveWishlistProducts = await getWishlist(authToken);
@@ -39,8 +39,10 @@ function useOperations() {
     }
 
     useEffect(() => {
-        getWishlistProductsFromApi(localStorageToken);
-        getCartFromApi(localStorageToken)
+        if (token) {
+            getWishlistProductsFromApi(token);
+            getCartFromApi(token)
+        }
     }, []);
 
     const wishlistButtonText = (item) => {
@@ -62,10 +64,12 @@ function useOperations() {
         const getUpdatedWishlistItem = isWishlisted(product)
             ? navigate("/wishlist")
             : await addToWishlist(authToken, product);
+            if(getUpdatedWishlistItem){
         dispatchUserSavedProducts({
             type: "WISHLIST_TOGGLE",
             payload: { wishlistData: getUpdatedWishlistItem.wishlist },
         });
+    }
     };
 
     const removeWishlistItem = async (authToken, product) => {
@@ -100,10 +104,12 @@ function useOperations() {
         const getUpdatedcartItem = iscart(product)
             ? navigate("/cart")
             : await addToCart(authToken, product);
+            if(getUpdatedcartItem){
         dispatchUserSavedProducts({
             type: "CART_TOGGLE",
             payload: { cartData: getUpdatedcartItem.cart },
         });
+    }
     };
 
 
@@ -127,7 +133,7 @@ function useOperations() {
     }
 
 
-    return { wishlistButtonText, toggleWishlist, removeWishlistItem, togglecart, cartButtonText, removeProductsFromCart, updateProductQuantityInCart };
+    return { wishlistButtonText, toggleWishlist, removeWishlistItem, togglecart, cartButtonText, removeProductsFromCart, updateProductQuantityInCart, getWishlistProductsFromApi, getCartFromApi };
 }
 
 export { useOperations };

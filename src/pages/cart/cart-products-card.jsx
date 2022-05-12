@@ -1,8 +1,8 @@
 import { useOperations } from "../../hooks/useOperations";
-import { useToken } from "../../hooks/token-hooks";
+import { useAuth } from "../../context/auth/auth-context";
 
 const CartProductCard = ({ selectedItemsForCart }) => {
-    const { localStorageToken } = useToken()
+    const { token } = useAuth()
     const { toggleWishlist, wishlistButtonText, removeProductsFromCart, updateProductQuantityInCart } = useOperations()
 
     return (
@@ -40,14 +40,14 @@ const CartProductCard = ({ selectedItemsForCart }) => {
                                     <p className="flex-align-centre gap-2">
                                         <span>Quantity:</span>
                                         <button className="btn btn-primary" onClick={() => {
-                                            updateProductQuantityInCart(localStorageToken, item, "increment")
+                                            updateProductQuantityInCart(token, item, "increment")
 
                                         }}>+</button>
                                         <span className="current-qty-no">{item.qty}</span>
                                         <button className="btn btn-primary" onClick={() => {
                                             item.qty > 1 ?
-                                                updateProductQuantityInCart(localStorageToken, item, "decrement") :
-                                                removeProductsFromCart(localStorageToken, item)
+                                                updateProductQuantityInCart(token, item, "decrement") :
+                                                removeProductsFromCart(token, item)
                                         }}
                                         >-</button>
                                     </p>
@@ -58,14 +58,14 @@ const CartProductCard = ({ selectedItemsForCart }) => {
                                         <button className="btn btn-primary"
                                             onClick={
                                                 () => {
-                                                    removeProductsFromCart(localStorageToken, item)
+                                                    removeProductsFromCart(token, item)
                                                 }
                                             }
                                         >Remove From cart</button>
 
                                         <button className="btn-block btn-x-sm py-1 btn btn-secondary mt-1"
                                             onClick={() => {
-                                                toggleWishlist(localStorageToken, item)
+                                                toggleWishlist(token, item)
                                             }}
                                         >
                                             {wishlistButtonText(item)}

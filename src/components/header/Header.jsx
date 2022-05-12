@@ -1,11 +1,15 @@
 import "./header.css";
-import { Link } from "react-router-dom";
+import { Link , useLocation} from "react-router-dom";
 import { userProductsDataContext } from "../../service/getUserProductsData";
 import { useContext } from "react";
 import { productsDataContext } from "../../context/products-context/products-data";
+import { useAuth } from "../../context/auth/auth-context";
 import { useState } from "react";
 
 const Header = () => {
+    const { token } = useAuth()
+    const location = useLocation();
+
     const { userSavedProductsState } = useContext(userProductsDataContext);
     const { filteredApplyItemState, filteredApplyItemDispatch } =
         useContext(productsDataContext);
@@ -16,6 +20,44 @@ const Header = () => {
     const [searchProductsList, setSearchProductsList] = useState([
         ...filteredApplyItemState.item,
     ]);
+
+
+    const searchFn = (e) => {
+        const inputSearchText = e.target.value.trim();
+        if (inputSearchText.trim().length > 0) {
+            setShowSuggestionSearch((prev) => {
+                return {
+                    ...prev,
+                    suggestionList: true,
+                    headerSearchWord: inputSearchText,
+                };
+            });
+
+            const findSuggestionAccordingSearch = [...filteredApplyItemState.item].filter((searchItem) => {
+                return searchItem.title.toLowerCase().includes(inputSearchText.toLowerCase()) ? searchItem : false;
+            });
+
+            setSearchProductsList(findSuggestionAccordingSearch);
+
+        } else {
+            filteredApplyItemDispatch({
+                type: "SEARCH_ITEM",
+                payload: {
+                    searchKeyword: "",
+                },
+            });
+
+            setShowSuggestionSearch((prev) => {
+                return {
+                    ...prev,
+                    suggestionList: false,
+                    headerSearchWord: "",
+                };
+            });
+
+            setSearchProductsList([]);
+        }
+    }
 
     return (
         <header className="flex-space-around p-2 nav-bg-primary nav-wrapper">
@@ -35,40 +77,10 @@ const Header = () => {
                         placeholder="Search"
                         value={showSuggestionSearch.headerSearchWord}
                         onChange={(e) => {
-                            const inputSearchText = e.target.value.trim();
-                            if (inputSearchText.trim().length > 0) {
-                                setShowSuggestionSearch((prev) => {
-                                    return {
-                                        ...prev,
-                                        suggestionList: true,
-                                        headerSearchWord: inputSearchText,
-                                    };
-                                }); 
-
-                                const findSuggestionAccordingSearch = [...filteredApplyItemState.item].filter((searchItem) => {
-                                    return searchItem.title.toLowerCase().includes(inputSearchText.toLowerCase())? searchItem : false;
-                                });
-
-                                setSearchProductsList(findSuggestionAccordingSearch);
-
-                            } else {
-                                filteredApplyItemDispatch({
-                                    type: "SEARCH_ITEM",
-                                    payload: {
-                                        searchKeyword: "",
-                                    },
-                                });
-
-                                setShowSuggestionSearch((prev) => {
-                                    return {
-                                        ...prev,
-                                        suggestionList: false,
-                                        headerSearchWord: "",
-                                    };
-                                });
- 
-                                setSearchProductsList([]);
-                            }
+                            searchFn(e)
+                        }}
+                        onKeyDown={(e)=>{
+                            searchFn(e)
                         }}
                     />
                 </span>
@@ -106,29 +118,21 @@ const Header = () => {
                                                 });
                                             }}
                                         >
-                                            <Link to="/productspage" className="text-decoration-none">
+                                            <Link to="/productspage" className="search-item-list">
                                                 {products.title}
                                             </Link>
                                         </li>
                                     );
                                 })
                             ) : (
-                                <li>No item Found</li>
+                                <li className="search-item-list">No item Found</li>
                             ))}
                     </ul>
                 </div>
             </div>
             <nav>
                 <ul className="horizontal-align-centre nav-text-primary">
-                    <li className="list-style-none">
-                        <button>
-                            <Link to="/signup" className="nav-btn-primary nav-text-primary ">
-                                <span className="btn btn-secondary btn-sm border-squre">
-                                    signUp
-                                </span>
-                            </Link>
-                        </button>
-                    </li>
+
                     <li className="list-style-none ">
                         <button>
                             <Link
@@ -159,18 +163,33 @@ const Header = () => {
                             </Link>
                         </button>
                     </li>
-                    <li className="list-style-none">
-                        <button>
-                            <Link
-                                to="profile"
-                                className="inline-centre nav-text-primary btn-icon-text-left btn-sm nav-btn-primary"
-                            >
-                                <span className="badge-container">
-                                    <i className="fas fa-user fs-md"></i>
-                                </span>
-                            </Link>
-                        </button>
-                    </li>
+                    {token ?
+                        <li className="list-style-none">
+                            <button>
+                                <Link
+                                    to="/profile"
+                                    className="inline-centre nav-text-primary btn-icon-text-left btn-sm nav-btn-primary"
+                                >
+                                    <span className="badge-container">
+                                        <i className="fas fa-user fs-md"></i>
+                                    </span>
+                                </Link>
+                            </button>
+                        </li> :
+                        <li className="list-style-none">
+                            <button>
+                                <Link to="/signup"
+                                    state={location?.pathname}
+                                    className="nav-btn-primary nav-text-primary ">
+                                    <span className="btn btn-secondary btn-sm border-squre">
+                                        signUp
+                                    </span>
+                                </Link>
+                            </button>
+                        </li>
+
+                    }
+
                 </ul>
             </nav>
         </header>
