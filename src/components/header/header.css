@@ -23,17 +23,23 @@
   overflow-y: scroll;
 }
 
-.show-suggestion-search li {
+/* .show-suggestion-search li {
   list-style: none;
+} */
+
+.search-item-list{
+  display: block;
   padding: 0.5rem 2rem;
   font-size: 1rem;
   font-weight: 500;
   margin: 0.2rem;
   cursor: pointer;
+  width: 99.5%;
+  text-decoration: none;
   border: 0.1px solid transparent;
 }
 
-.show-suggestion-search li:hover {
+.search-item-list:hover {
   background-color: var(--white-color);
   border: 0.1px solid var(--gray-bg);
 }

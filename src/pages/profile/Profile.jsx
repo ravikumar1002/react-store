@@ -7,11 +7,11 @@ const Profile = () => {
     const [activeBtn, setActiveBtn] = useState("user-profile")
     const { dispatchUserSavedProducts } = useContext(userProductsDataContext)
     const navigate = useNavigate()
-    const { userData, removeData } = useAuth()
+    const { user, logout } = useAuth()
+    const {userData} = user
 
     const userLogout = () => {
-        localStorage.clear()
-        removeData()
+        logout()
         dispatchUserSavedProducts({
             type: "LOGOUT",
         })
@@ -25,9 +25,6 @@ const Profile = () => {
                     <button className={`btn-sm  border-squre ${activeBtn === "user-profile" ? "btn-primary" : "btn-secondary"}`} onClick={() => {
                         setActiveBtn("user-profile")
                     }}>Profile</button>
-                    <button className={`btn-sm  border-squre ${activeBtn === "address" ? "btn-primary" : "btn-secondary"}`} onClick={() => {
-                        setActiveBtn("address")
-                    }}>Address</button>
                 </div>
                 {activeBtn === "user-profile" && <div className="profile-wrapper" >
                     <div>
@@ -47,9 +44,6 @@ const Profile = () => {
                         </button>
                     </div>
 
-                </div>}
-                {activeBtn === "address" && <div className="profile-wrapper" >
-                    <p>Address feature coming soon</p>
                 </div>}
             </div>
         </div>

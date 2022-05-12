@@ -64,10 +64,12 @@ function useOperations() {
         const getUpdatedWishlistItem = isWishlisted(product)
             ? navigate("/wishlist")
             : await addToWishlist(authToken, product);
+            if(getUpdatedWishlistItem){
         dispatchUserSavedProducts({
             type: "WISHLIST_TOGGLE",
             payload: { wishlistData: getUpdatedWishlistItem.wishlist },
         });
+    }
     };
 
     const removeWishlistItem = async (authToken, product) => {
@@ -102,10 +104,12 @@ function useOperations() {
         const getUpdatedcartItem = iscart(product)
             ? navigate("/cart")
             : await addToCart(authToken, product);
+            if(getUpdatedcartItem){
         dispatchUserSavedProducts({
             type: "CART_TOGGLE",
             payload: { cartData: getUpdatedcartItem.cart },
         });
+    }
     };
 
 

@@ -60,7 +60,11 @@ const PriceProductCard = ({ productsData }) => {
                                     <button
                                         className="btn-block btn-x-sm py-1 btn btn-secondary mt-1"
                                         onClick={() => {
-                                            toggleWishlist(token, item);
+                                            if (token) {
+                                                toggleWishlist(token, item);
+                                            } else {
+                                                alert("login first")
+                                            }
                                         }}
                                     >
                                         {wishlistButtonText(item)}

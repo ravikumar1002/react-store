@@ -1,5 +1,5 @@
 import "./header.css";
-import { Link } from "react-router-dom";
+import { Link , useLocation} from "react-router-dom";
 import { userProductsDataContext } from "../../service/getUserProductsData";
 import { useContext } from "react";
 import { productsDataContext } from "../../context/products-context/products-data";
@@ -8,6 +8,8 @@ import { useState } from "react";
 
 const Header = () => {
     const { token } = useAuth()
+    const location = useLocation();
+
     const { userSavedProductsState } = useContext(userProductsDataContext);
     const { filteredApplyItemState, filteredApplyItemDispatch } =
         useContext(productsDataContext);
@@ -77,6 +79,9 @@ const Header = () => {
                         onChange={(e) => {
                             searchFn(e)
                         }}
+                        onKeyDown={(e)=>{
+                            searchFn(e)
+                        }}
                     />
                 </span>
 
@@ -113,14 +118,14 @@ const Header = () => {
                                                 });
                                             }}
                                         >
-                                            <Link to="/productspage" className="text-decoration-none">
+                                            <Link to="/productspage" className="search-item-list">
                                                 {products.title}
                                             </Link>
                                         </li>
                                     );
                                 })
                             ) : (
-                                <li>No item Found</li>
+                                <li className="search-item-list">No item Found</li>
                             ))}
                     </ul>
                 </div>
@@ -173,7 +178,9 @@ const Header = () => {
                         </li> :
                         <li className="list-style-none">
                             <button>
-                                <Link to="/signup" className="nav-btn-primary nav-text-primary ">
+                                <Link to="/signup"
+                                    state={location?.pathname}
+                                    className="nav-btn-primary nav-text-primary ">
                                     <span className="btn btn-secondary btn-sm border-squre">
                                         signUp
                                     </span>
