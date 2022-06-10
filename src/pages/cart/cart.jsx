@@ -6,19 +6,26 @@ import { userProductsDataContext } from "../../service/getUserProductsData";
 import CartEmptyImg from "../../assets/empty-bag.png"
 import { EmptyPage } from "../../components/empty-page/EmptyPage";
 import { useDocumentTitle } from "../../hooks/document-title";
-
+import { useOperations } from "../../hooks/useOperations";
+import { useAuth } from "../../context/auth/auth-context";
 const CartPage = () => {
+    const { getCartFromApi, getWishlistProductsFromApi } = useOperations()
+    const { token } = useAuth()
     useEffect(() => {
         useDocumentTitle("Cart")
+        if (token) {
+            getWishlistProductsFromApi(token);
+            getCartFromApi(token)
+        }
     }, [])
-    
+
 
     const { userSavedProductsState } = useContext(
         userProductsDataContext
     );
 
-    const emptyWIshlist  = {
-        imgSrc : CartEmptyImg,
+    const emptyWIshlist = {
+        imgSrc: CartEmptyImg,
         imgAlt: "Cart is empty",
         emptyPageHeading: "Unfortunately, Your Cart is Empty",
         emptyPageText: "Please Add Something in your Cart",
@@ -35,9 +42,9 @@ const CartPage = () => {
                     {userSavedProductsState?.cart.length > 0 && <CartFinalPriceCard />}
                 </div>
                 <div>
-                   {userSavedProductsState.cart.length === 0 && <div className="text-center mt-4">
-                   <EmptyPage  emptyPageData= {emptyWIshlist}/>
-                    </div>}  
+                    {userSavedProductsState.cart.length === 0 && <div className="text-center mt-4">
+                        <EmptyPage emptyPageData={emptyWIshlist} />
+                    </div>}
                 </div>
             </div>
         </main>

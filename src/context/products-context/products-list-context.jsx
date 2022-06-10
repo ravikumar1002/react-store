@@ -17,7 +17,7 @@ const ProductsListProider = ({ children }) => {
     }, []);
 
     return (
-        <productsListContext.Provider value={{ productsData }}>
+        <productsListContext.Provider value={{ productsData, setProductsData }}>
             {children}
         </productsListContext.Provider>
     );

@@ -1,10 +1,10 @@
-import { useToken } from "../../hooks/token-hooks";
+import { useAuth } from "../../context/auth/auth-context";
 import { useOperations } from "../../hooks/useOperations";
 
 
 const WishlistProductsCard = ({ productsData }) => {
     const { removeWishlistItem, togglecart, cartButtonText } = useOperations()
-    const {localStorageToken}   = useToken()
+    const {token}   = useAuth()
 
     return (
         <>
@@ -46,14 +46,14 @@ const WishlistProductsCard = ({ productsData }) => {
                                     <button className="btn btn-primary"
                                         onClick={
                                             () => {
-                                                togglecart(localStorageToken, item)
+                                                togglecart(token, item)
                                             }
                                         }
                                     >{cartButtonText(item)}</button>
 
                                     <button className="btn-block btn-x-sm py-1 btn btn-secondary mt-1"
                                         onClick={() => {
-                                            removeWishlistItem(localStorageToken, item)
+                                            removeWishlistItem(token, item)
                                         }}
                                     >
                                         Remove from Wishlist

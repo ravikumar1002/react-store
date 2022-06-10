@@ -51,6 +51,15 @@
   height: 100%;
 }
 
+.product-items > div{
+  height: 15rem;
+  max-width: 27rem;
+}
+
+.product-items > div > div:first-child{
+  width: 18rem;
+}
+
 /* ============================================================= */
 
 .card-wishlist-btn {

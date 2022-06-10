@@ -40,8 +40,11 @@ React-Store is an ecommerce website.
    - Add to cart
 
 5. Authentication
-   - signup  
-     (Note: proper authorization coming soon )
+   - Signup  
+   - Login
+   - Logout
+
+6. Search Products
 
 ---
 
