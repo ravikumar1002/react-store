@@ -98,6 +98,19 @@ const Login = () => {
                             </button>
                         </div>
                         <div className="text-center mt-1">
+                            <button className="btn-sm border-squre form-submit btn-block" onClick={(e) => {
+                                e.preventDefault()
+                                userlogin({
+                                    email: "testuser@gmail.com",
+                                    password: "testuser",
+                                }, location);
+                                localStorage.setItem("accessType", JSON.stringify({ accessType: "testUser" }))
+                                setloginDetail({ ...defaultLoginValue })
+                            }}>
+                                Login with Test user
+                            </button>
+                        </div>
+                        <div className="text-center mt-1">
                             <Link
                                 to="/signup"
                                 state={location?.state}

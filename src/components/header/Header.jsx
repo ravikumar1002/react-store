@@ -178,11 +178,11 @@ const Header = () => {
                         </li> :
                         <li className="list-style-none">
                             <button>
-                                <Link to="/signup"
+                                <Link to="/login"
                                     state={location?.pathname}
                                     className="nav-btn-primary nav-text-primary ">
                                     <span className="btn btn-secondary btn-sm border-squre">
-                                        signUp
+                                        Login
                                     </span>
                                 </Link>
                             </button>

@@ -40,17 +40,17 @@ const AuthProvider = ({ children }) => {
         }
     }
 
-    const userSignUp = async ({ email, password, name}, path) => {
+    const userSignUp = async ({ email, password, name }, path) => {
         const data = await signupHandler(email, password, name)
-        setLocalStroge(data.encodedToken,data?.createdUser )
-        setData(data.encodedToken,data?.createdUser )
+        setLocalStroge(data.encodedToken, data?.createdUser)
+        setData(data.encodedToken, data?.createdUser)
         setPath(path)
     }
 
     const userlogin = async ({ email, password }, path) => {
         const data = await loginHandler(email, password)
-        setLocalStroge(data.encodedToken,data?.foundUser )
-        setData(data.encodedToken,data?.foundUser )
+        setLocalStroge(data.encodedToken, data?.foundUser)
+        setData(data.encodedToken, data?.foundUser)
         setPath(path)
     }
 
@@ -72,13 +72,21 @@ const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        if ((JSON.parse(localStorage.getItem("userHasLogged"))?.token) && (!user.encodedToken)) {
+        if (JSON.parse(localStorage.getItem("accessType"))?.accessType === "testUser") {
+            userlogin(
+                {
+                    email: "testuser@gmail.com",
+                    password: "testuser",
+                },
+                location
+            )
+        } else if ((JSON.parse(localStorage.getItem("userHasLogged"))?.token) && (!user.encodedToken)) {
             getLocalData(location)
         }
     }, [])
 
 
-    return <authContext.Provider value={{ userSignUp,logout, userlogin, user, token: user?.encodedToken }}>
+    return <authContext.Provider value={{ userSignUp, logout, userlogin, user, token: user?.encodedToken }}>
         {children}
     </authContext.Provider>
 }
