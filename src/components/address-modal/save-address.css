@@ -1,0 +1,30 @@
+.save-address-box {
+  width: 25rem;
+  margin: 0.5rem;
+  border: 1px solid rgb(210, 210, 210);
+}
+
+.address-content {
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.address-content > span {
+  padding: 0.5rem;
+  margin-bottom: 0.3rem;
+  background-color: rgb(210, 210, 210);
+}
+
+.address-content > span:first-child {
+  width: 40%;
+}
+
+.address-content > span:last-child {
+  width: 60%;
+}
+
+div.address-btn-section > span {
+  background-color: white;
+  margin-bottom: 0;
+}

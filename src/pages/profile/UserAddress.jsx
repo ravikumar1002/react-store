@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { AddressModal } from "../../components/address-modal/AddressModal"
 import { useOperations } from "../../hooks/useOperations"
+import { SaveAddress } from "../../components/address-modal/SaveAddress"
 
 export const UserAddress = () => {
 
@@ -13,7 +14,7 @@ export const UserAddress = () => {
                 <button className="btn border-squre btn-primary" onClick={() => {
                     setShowAddressModal(true)
                 }}>Create new Address</button>
-                <div>Saved Address</div>
+                <SaveAddress/>
             </div>}
             {showAddressModal && <AddressModal setShowAddressModal={setShowAddressModal}/>}
         </div>
