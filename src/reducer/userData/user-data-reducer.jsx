@@ -50,6 +50,14 @@ const userDataReducer = (state, action) => {
                 ...state,
                 cart: [],
                 wishlist: [],
+                address: [],
+            }
+        }
+
+        case "NEW_ADDRESS" : {
+            return{
+                ...state,
+                address: action.payload.address
             }
         }
 

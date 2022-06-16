@@ -8,6 +8,7 @@ const UserProductsDataProvider = ({ children }) => {
     const userSavedProductsInitial = {
         wishlist: [],
         cart: [],
+        address: [],
     };
 
     const [userSavedProductsState, dispatchUserSavedProducts] = useReducer(
