@@ -3,12 +3,12 @@ import "./address-modal.css"
 import { useAuth } from "../../context/auth/auth-context"
 import { useOperations } from "../../hooks/useOperations"
 
-export const AddressModal = ({ update, updateData ,setShowAddressModal}) => {
+export const AddressModal = ({ update, updateData, setShowAddressModal }) => {
     const emptyAddress = {
-        firstName: "",
-        lastName: "",
+        addressName: "",
         addressLine1: "",
         addressLine2: "",
+        phoneNo: "",
         city: "",
         state: "",
         pincode: "",
@@ -41,12 +41,14 @@ export const AddressModal = ({ update, updateData ,setShowAddressModal}) => {
                     setAddressData({ ...emptyAddress })
                 }}>
                     <div className="d-flex gap-2">
-                        <input type="text" id="firstname" placeholder="First Name *" value={addressData.firstName} onChange={(e) => {
-                            addressFormInput("firstName", e.target.value)
+                        <input type="text" id="addressname" placeholder="AddressName*" value={addressData.addressName} onChange={(e) => {
+                            addressFormInput("addressName", e.target.value)
                         }} required />
-                        <input type="text" id="firstname" placeholder="Last Name" value={addressData.lastName} onChange={(e) => {
-                            addressFormInput("lastName", e.target.value)
-                        }} />
+                    </div>
+                    <div className="">
+                        <input type="number" placeholder="Phone No *" value={addressData.phoneNo} onChange={(e) => {
+                            addressFormInput("phoneNo", e.target.value)
+                        }} required />
                     </div>
                     <div className="">
                         <input type="text" placeholder="Address line 1 *" value={addressData.addressLine1} onChange={(e) => {
@@ -57,7 +59,6 @@ export const AddressModal = ({ update, updateData ,setShowAddressModal}) => {
                         <input type="text" placeholder="Address line 2" value={addressData.addressLine2} onChange={(e) => {
                             addressFormInput("addressLine2", e.target.value)
                         }} />
-
                     </div>
                     <div className="d-flex gap-2">
                         <input type="text" placeholder="City/District *" value={addressData.city} onChange={(e) => {
@@ -76,7 +77,9 @@ export const AddressModal = ({ update, updateData ,setShowAddressModal}) => {
                         }} required />
                     </div>
                     <div className="flex-between gap-4">
-                        <button className=" btn-sm btn-danger border-squre">Cancel</button>
+                        <button className=" btn-sm btn-danger border-squre" onClick={() => {
+                            setShowAddressModal(false)
+                        }}>Cancel</button>
                         <button className=" btn-sm btn-primary border-squre" type="submit">Save address</button>
                     </div>
                 </form>

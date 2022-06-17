@@ -1,29 +1,39 @@
 
+import { useOperations } from "../../hooks/useOperations"
 import "./save-address.css"
 
-export const SaveAddress = () => {
+export const SaveAddress = ({ address }) => {
+
+    const { deleteAddress } = useOperations()
 
     return (
         <div className="save-address-box">
             <div className="address-content">
                 <span>Address name:</span>
-                <span>Something</span>
+                <span>{address.addressName}</span>
             </div>
             <div className="address-content">
                 <span>Address:</span>
-                <span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, officiis!
+                <span className="address-box">
+                    {address.addressLine1},
+                    {address?.addressLine2}
+                    {address.city},
+                    {address.pincode},
+                    {address.state},
+                    {address.country}, 
                 </span>
             </div>
             <div className="address-content">
-                <span>Phone NO:</span>
+                <span>Phone No:</span>
                 <span>
-                    1236547890
+                    {address.phoneNo}
                 </span>
             </div>
             <div className="address-content address-btn-section">
                 <span>
-                    <button className="btn btn-danger">Delete Address</button>
+                    <button className="btn btn-danger" onClick={() => {
+                        deleteAddress()
+                    }}>Delete Address</button>
                 </span>
                 <span>
                     <button className="btn btn-secondary">Edit Address</button>

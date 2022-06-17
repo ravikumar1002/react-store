@@ -54,8 +54,29 @@ const userDataReducer = (state, action) => {
             }
         }
 
+        case "ALL_ADDRESS": {
+            return{
+                ...state,
+                address: action.payload.address
+            }
+        }
+
+        case "UPDATE_ADDRESS": {
+            return{
+                ...state,
+                address: action.payload.address
+            }
+        }
+
         case "NEW_ADDRESS" : {
             return{
+                ...state,
+                address: action.payload.address
+            }
+        }
+
+        case "DELETE_ADDRESS" : {
+            return {
                 ...state,
                 address: action.payload.address
             }

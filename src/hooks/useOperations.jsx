@@ -49,10 +49,22 @@ function useOperations() {
         });
     };
 
+    const getAllAddress = async (authToken) => {
+        const allAddress = await getAddressFromServer(authToken);
+        console.log(allAddress);
+        dispatchUserSavedProducts({
+            type: "ALL_ADDRESS",
+            payload: {
+                address: allAddress.address,
+            },
+        });
+    };
+
     useEffect(() => {
         if (token) {
             getWishlistProductsFromApi(token);
             getCartFromApi(token);
+            getAllAddress(token)
         }
     }, []);
 
@@ -161,6 +173,17 @@ function useOperations() {
         });
     };
 
+    const deleteAddress = async (authToken, id) => {
+        const addressAfterDeleted = await removeAddressFromServer(authToken, id);
+        console.log(addressAfterDeleted);
+        dispatchUserSavedProducts({
+            type: "DELETE_ADDRESS",
+            payload: {
+                address: addressAfterDeleted.address,
+            },
+        });
+    };
+
     return {
         wishlistButtonText,
         toggleWishlist,
@@ -173,6 +196,7 @@ function useOperations() {
         getCartFromApi,
         newAddress,
         updateAddress,
+        deleteAddress,
     };
 }
 
