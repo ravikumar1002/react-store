@@ -36,7 +36,7 @@ export const AddressModal = ({
     };
 
     return (
-        <div className= {`${checkout ?"create-address-container" : " " }`}>
+        <div className={`${checkout ? "create-address-container" : " "}`}>
             <div
                 className={`${checkout ? "checkout-address-modal-wrapper" : "address-modal-wrapper"
                     } `}
@@ -51,7 +51,6 @@ export const AddressModal = ({
                             } else {
                                 newAddress(token, addressData);
                             }
-                            console.log(addressData);
                             setAddressData({ ...emptyAddress });
                             if (checkout) {
                                 setShowSaveAddressModal(true);
@@ -145,7 +144,29 @@ export const AddressModal = ({
                             >
                                 Cancel
                             </button>
-                            <button className=" btn-sm btn-primary border-squre" type="submit">
+                            {
+                                !update && <button
+                                    className=" btn-sm btn-secondary border-squre"
+                                    onClick={() => {
+                                        if (!update) {
+                                            newAddress(token, {
+                                                addressName: "Local Address",
+                                                addressLine1: "Internet",
+                                                addressLine2: "Something",
+                                                phoneNo: "1236547890",
+                                                city: "Anything",
+                                                state: "Something",
+                                                pincode: "000000",
+                                                country: "World",
+                                            });
+                                        }
+                                        setShowAddressModal(false);
+                                    }}
+                                >
+                                    demo fill
+                                </button>
+                            }
+                            <button className="btn-sm btn-primary border-squre" type="submit">
                                 Save address
                             </button>
                         </div>
