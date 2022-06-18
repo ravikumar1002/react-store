@@ -1,0 +1,38 @@
+.address-modal-wrapper {
+  position: absolute;
+  top: 6rem;
+  z-index: 5;
+  left: 50%;
+  background-color: white;
+}
+.checkout-address-modal-wrapper {
+  position: absolute;
+  z-index: 5;
+  background-color: white;
+}
+
+.create-address-container {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #efefefb3;;
+}
+
+.address-modal input {
+  padding: 0.5rem;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+.address-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 1px solid black;
+  border-radius: 10px;
+}

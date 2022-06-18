@@ -1,11 +1,32 @@
-import {useContext } from "react";
+import { useContext } from "react";
 import { cartSummry } from "./cart-summary";
 import { userProductsDataContext } from "../../service/getUserProductsData";
+import { Link, useNavigate } from "react-router-dom";
+import { addToOrdersInServer } from "../../api-request/order"
+import { useAuth } from "../../context/auth/auth-context";
 
-const CartFinalPriceCard = () => {
-    const { userSavedProductsState } = useContext(userProductsDataContext);
+const CartFinalPriceCard = ({ checkout, selectedAddress }) => {
+    const { userSavedProductsState, dispatchUserSavedProducts } = useContext(userProductsDataContext);
+    const { token } = useAuth()
+    const navigate = useNavigate()
 
     const { getPrice, totalPrice, getDiscount, savePrice } = cartSummry();
+
+    const placeOrder = () => {
+        const orederedData = addToOrdersInServer(token, {
+            deliveryAddress: selectedAddress,
+            items: userSavedProductsState.cart
+        })
+        console.log(orederedData)
+        dispatchUserSavedProducts({
+            type: "ORDERED_ITEM",
+            payload: {
+                orderProducts: orederedData.orders,
+                cartClear: [],
+            }
+        })
+        navigate('/profile/orders', { replace: true })
+    }
 
     return (
         <div className="cart-price-details">
@@ -32,9 +53,15 @@ const CartFinalPriceCard = () => {
                 <p className="p-1">{`you will save on this order  $${savePrice(
                     userSavedProductsState.cart
                 )}`}</p>
-                <div className="btn-block p-1">
-                    <button className=" btn btn-primary ">Place Order</button>
-                </div>
+                {checkout ? <button className="btn btn-primary" onClick={(e) => {
+                    placeOrder()
+                }}>
+                    Place Order
+                </button> :
+                    <Link to="/checkout" className="btn-block p-1">
+                        <button className="btn btn-primary">Checkout</button>
+                    </Link>
+                }
             </div>
         </div>
     );

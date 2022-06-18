@@ -1,0 +1,38 @@
+.checkout-page {
+  display: flex;
+  justify-content: space-evenly;
+}
+.checkout-address-wrapper {
+  padding: 0.5rem;
+  margin: 1rem 0.5rem;
+}
+
+.checkout-address {
+  width: 50%;
+}
+
+.horizontal-product-checkout-img {
+  height: 10rem;
+}
+
+.checkout-card {
+  width: 20rem;
+}
+
+.checkout-address-option {
+  width: 30rem;
+  position: absolute;
+  background-color: white;
+  z-index: 3;
+  padding: 0.5rem;
+}
+
+.checkout-address_modal-box {
+  width: 100vw;
+  position: absolute;
+  height: 100vh;
+  background: #efefefb3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
