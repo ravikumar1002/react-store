@@ -44,3 +44,9 @@
   color: white;
   background-color: var(--gray-color);
 }
+
+.order-wrapper{
+  border: 1px solid black;
+  padding: 0.5rem;
+  border-radius: 5px;
+}

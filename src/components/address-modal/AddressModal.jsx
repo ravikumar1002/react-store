@@ -36,7 +36,7 @@ export const AddressModal = ({
     };
 
     return (
-        <div className="create-address-container">
+        <div className= {`${checkout ?"create-address-container" : " " }`}>
             <div
                 className={`${checkout ? "checkout-address-modal-wrapper" : "address-modal-wrapper"
                     } `}
