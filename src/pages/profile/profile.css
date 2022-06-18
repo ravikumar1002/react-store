@@ -26,3 +26,21 @@
   margin: auto;
 }
 
+.profile-tab{
+  text-decoration: none;
+  padding: 0.5rem;
+  width: 50%;
+  color: black;
+  font-weight: 500;
+}
+
+.active-profile-tab{
+  color: white;
+  background-color: var(--gray-color);
+  font-weight: 500;
+}
+
+.profile-tab:hover{
+  color: white;
+  background-color: var(--gray-color);
+}

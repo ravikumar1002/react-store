@@ -8,9 +8,6 @@ export const UserAddress = () => {
     const { userSavedProductsState } = useContext(userProductsDataContext);
     const { address } = userSavedProductsState
 
-    console.log(address)
-
-
     const [showAddressModal, setShowAddressModal] = useState(false)
 
     return (

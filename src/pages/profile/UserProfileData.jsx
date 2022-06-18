@@ -4,9 +4,11 @@ import { useAuth } from "../../context/auth/auth-context"
 import { userProductsDataContext } from "../../service/getUserProductsData"
 import "./user-profile-data.css"
 
-export const UserProfileData = ({ userData }) => {
+export const UserProfileData = () => {
     const navigate = useNavigate()
     const { logout } = useAuth()
+    const { user } = useAuth()
+    const { userData } = user
 
     const { dispatchUserSavedProducts } = useContext(userProductsDataContext)
 

@@ -9,6 +9,7 @@ const UserProductsDataProvider = ({ children }) => {
         wishlist: [],
         cart: [],
         address: [],
+        orders:[],
     };
 
     const [userSavedProductsState, dispatchUserSavedProducts] = useReducer(

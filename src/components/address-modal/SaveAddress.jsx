@@ -20,7 +20,7 @@ export const SaveAddress = ({ address }) => {
                     {address.city},
                     {address.pincode},
                     {address.state},
-                    {address.country}, 
+                    {address.country},
                 </span>
             </div>
             <div className="address-content">

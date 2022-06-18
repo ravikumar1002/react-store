@@ -14,6 +14,12 @@ import { Login } from "./pages/auth/login";
 import { useAuth } from "./context/auth/auth-context";
 import { useOperations } from "./hooks/useOperations";
 import { useEffect } from "react";
+import { Checkout } from "./pages/cart/Checkout";
+import { Orders } from "./pages/profile/Orders";
+import { UserAddress } from "./pages/profile/UserAddress";
+import { UserProfileData } from "./pages/profile/UserProfileData";
+
+
 function App() {
   const { getCartFromApi, getWishlistProductsFromApi } = useOperations();
   const { token } = useAuth();
@@ -45,6 +51,14 @@ function App() {
             </RequiresAuth>
           }
         />
+        <Route
+          path="/checkout"
+          element={
+            <RequiresAuth>
+              <Checkout />
+            </RequiresAuth>
+          }
+        />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/mockman" element={<Mockman />} />
@@ -53,7 +67,29 @@ function App() {
           path="/profile"
           element={
             <RequiresAuth>
-              <Profile />
+              <Profile>
+                <UserProfileData />
+              </Profile>
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/profile/orders"
+          element={
+            <RequiresAuth>
+              <Profile>
+                <Orders />
+              </Profile>
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/profile/address"
+          element={
+            <RequiresAuth>
+              <Profile>
+                <UserAddress />
+              </Profile>
             </RequiresAuth>
           }
         />
