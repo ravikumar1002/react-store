@@ -46,6 +46,7 @@ React-Store is an ecommerce website.
 
 6. Search Products
 
+7. Place order
 ---
 
 ### Get started
